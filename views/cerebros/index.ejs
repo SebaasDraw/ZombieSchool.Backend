@@ -1,0 +1,43 @@
+<% include ../_header %>
+    <h1>
+      <%= title %>
+    </h1>
+    <p>
+      <%= data %>
+    </p>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Description</th>
+        <th>Flavor</th>
+        <th>Price</th>
+        <th>Picture</th>
+        <th>Acciones</th>
+      </tr>
+      <%
+      if(viewCerebros){
+        viewCerebros.forEach(function(cerebro){
+          %>
+          <tr>
+            <td> <%= cerebro.Description %> </td>
+            <td> <%= cerebro.Flavor %> </td>
+            <td> <%= cerebro.Price %>$ </td>
+            <td>
+              <img src="" alt="">
+                <img src="images/<%= cerebro.Picture %>.png" alt="" style="width: 36px; height: 36px; margin-right: 10px;">
+            </td>
+            <td>
+              <a href="/cerebros/edit/<%= cerebro.id %>">
+                <i title="Actualizar" class="fas fa-edit"></i>
+            </a>
+            <a href="/cerebros/delete/<%= cerebro.id%>">
+                <i title="Eliminar" class="fas fa-trash danger"></i>
+            </a>
+            </td>
+          </tr>
+          <%
+        });
+      }%>
+    </table>
+    <a href="/cerebros/add"><button class="btn btn-dark"><i class="fas fa-plus" style="margin: 5px;"></i>Agregar nuevo cerebro</button></a>
+<% include ../_footer %>
